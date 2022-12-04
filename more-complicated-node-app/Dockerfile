@@ -12,7 +12,6 @@ RUN npm ci
 
 COPY --chown=node:node . .
 
-
 EXPOSE 3000
 
 CMD ["node", "index.js"]
