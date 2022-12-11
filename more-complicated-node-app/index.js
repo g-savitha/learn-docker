@@ -4,7 +4,7 @@ const hapi = require('@hapi/hapi');
 async function start() {
   const server = hapi.server({
     host: '0.0.0.0', //if you put this as localhost, which is semantically correct. But localhost wont allow you to escape from the container. Binding is necessary
-    port: process.env.PORT || 5000,
+    port: process.env.PORT || 3000,
   });
 
   server.route({

@@ -1,0 +1,3 @@
+[submodule "hugo-example"]
+	path = hugo-example
+	url = /sub
