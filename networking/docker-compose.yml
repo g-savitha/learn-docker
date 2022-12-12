@@ -5,8 +5,20 @@ services:
     # dockerfile is here and build from here
     build: .
     ports:
-      # expose port 3000 on 3000
-      - '3000:3000'
+      # scale containers on 10 different ports and run them concurrently
+      - 3000
+      - 3001
+      - 3002
+      - 3003
+      - 3004
+      - 3005
+      - 3006
+      - 3007
+      - 3008
+      - 3009
+
+    scale:
+      10
       # connect our code to the container
     volumes:
       # code exists at this directory.
