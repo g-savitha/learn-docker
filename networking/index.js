@@ -20,7 +20,7 @@ async function start() {
     path: '/',
     async handler() {
       const count = await collection.count();
-      return { success: true, count };
+      return { success: false, count, amICool: true };
     },
   });
 
