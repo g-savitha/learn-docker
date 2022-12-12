@@ -1,0 +1,24 @@
+version: '3'
+services:
+  # current project
+  web:
+    # dockerfile is here and build from here
+    build: .
+    ports:
+      # expose port 3000 on 3000
+      - '3000:3000'
+      # connect our code to the container
+    volumes:
+      # code exists at this directory.
+      #  expose everything inside of container to this directory.
+      - .:/home/node/code
+      # dont bring in node_modules
+      - /home/node/code/node_modules
+    links:
+      # this container is linked to db
+      # Since this is dependant on db, it starts db container first
+      - db
+    environment:
+      - MONGO_CONNECTION_STRING=mongodb://db:27017
+  db:
+    image: mongo:3
