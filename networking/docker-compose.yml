@@ -3,34 +3,19 @@ services:
   # current project
   web:
     # dockerfile is here and build from here
-    build: .
+    image: btholt/node-app
     ports:
-      # scale containers on 10 different ports and run them concurrently
-      - 3000
-      - 3001
-      - 3002
-      - 3003
-      - 3004
-      - 3005
-      - 3006
-      - 3007
-      - 3008
-      - 3009
-
-    scale:
-      10
-      # connect our code to the container
-    volumes:
-      # code exists at this directory.
-      #  expose everything inside of container to this directory.
-      - .:/home/node/code
-      # dont bring in node_modules
-      - /home/node/code/node_modules
+      - '3000:3000'
     links:
       # this container is linked to db
       # Since this is dependant on db, it starts db container first
       - db
+    # kubernetes needs to know about the type of service
+    labels:
+      kompose.service.type: LoadBalancer
     environment:
       - MONGO_CONNECTION_STRING=mongodb://db:27017
   db:
     image: mongo:3
+    ports:
+      - '27017'
